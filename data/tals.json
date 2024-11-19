@@ -1,0 +1,8 @@
+{
+  "Hindustani": {
+    "Teentaal": ["Dha", "Dhin", "Dhin", "Dha", "Na", "Tin", "Na", "Dhin"]
+  },
+  "Carnatic": {
+    "Adhi Taal": ["Dha", "Dhin", "Na", "Dhin", "Dha", "Tin", "Na", "Dhin"]
+  }
+}
