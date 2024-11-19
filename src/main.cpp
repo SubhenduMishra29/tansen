@@ -1,25 +1,34 @@
-#include "midi_generator.h"
 #include "taal.h"
-#include "rhythm_pattern.h"
+#include <iostream>
 
 int main() {
-    // Initialize Taal system
-    TaalManager taalManager;
-    taalManager.loadDefaultTals();
+    TaalManager manager;
 
-    // Create MIDI Generator
-    MIDIGenerator midiGenerator;
-
-    // Select a Taal
-    auto taal = taalManager.getTaal("Teentaal");
-    if (!taal) {
-        std::cerr << "Error: Taal not found!" << std::endl;
-        return 1;
+    // Load Tals from JSON
+    try {
+        manager.loadTalsFromJson("tals.json");
+    } catch (const std::exception& e) {
+        std::cerr << "Error loading Tals: " << e.what() << std::endl;
     }
 
-    // Generate MIDI for the Taal
-    midiGenerator.generateMIDI(*taal, "output_teentaal.mid");
+    // Add a new Taal
+    manager.addTaal("CustomTaal", {"Dha", "Dha", "Tin", "Na", "Dhin"});
 
-    std::cout << "MIDI file generated: output_teentaal.mid" << std::endl;
+    // Save updated Tals back to JSON
+    try {
+        manager.saveTalsToJson("tals.json");
+    } catch (const std::exception& e) {
+        std::cerr << "Error saving Tals: " << e.what() << std::endl;
+    }
+
+    // Print all Tals
+    for (const auto& [name, taal] : manager.getAllTals()) {
+        std::cout << "Taal: " << name << ", Beats: ";
+        for (const auto& bol : taal.getBols()) {
+            std::cout << bol << " ";
+        }
+        std::cout << std::endl;
+    }
+
     return 0;
 }
