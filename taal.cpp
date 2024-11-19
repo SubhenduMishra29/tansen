@@ -1,79 +1,58 @@
 #include <iostream>
+#include <fstream>
+#include <unordered_map>
 #include <vector>
 #include <string>
-#include <unordered_map>
 #include <stdexcept>
 
-class Taal {
-public:
+enum RhythmicVariation {
+    DUGUN, TIGUN, CHAUGUNI, NORMAL
+};
+
+struct Taal {
     std::string name;
-    int beats;
-    std::vector<std::string> boles;
-    std::string time_signature;
-    std::vector<std::string> variations;
+    int beats; // Number of beats in the Taal
+    std::vector<std::string> bols; // Boles or syllables of the Taal
 
-    // Constructor for Taal
-    Taal(const std::string& name, int beats, const std::vector<std::string>& boles, const std::string& time_signature = "4/4")
-        : name(name), beats(beats), boles(boles), time_signature(time_signature) {}
+    Taal(const std::string& n, int b, const std::vector<std::string>& bl)
+        : name(n), beats(b), bols(bl) {}
 
-    // Function to display the Taal details
     void display() const {
-        std::cout << "Taal: " << name << ", Beats: " << beats << ", Time Signature: " << time_signature << " | Boles: ";
-        for (const auto& bole : boles) {
-            std::cout << bole << " ";
+        std::cout << "Taal: " << name << " (" << beats << " beats)\n";
+        std::cout << "Bols: ";
+        for (const auto& bol : bols) {
+            std::cout << bol << " ";
         }
-        std::cout << "\nVariations: ";
-        for (const auto& var : variations) {
-            std::cout << var << " ";
-        }
-        std::cout << std::endl;
+        std::cout << "\n";
     }
+};
+
+struct Tempo {
+    std::string name;
+    int beatsPerMinute;
+
+    Tempo(const std::string& n, int bpm) : name(n), beatsPerMinute(bpm) {}
+};
+
+struct Instrument {
+    std::string name;
+    int pitch; // A simple representation of pitch
+
+    Instrument(const std::string& n, int p) : name(n), pitch(p) {}
 };
 
 class TaalManager {
 private:
     std::unordered_map<std::string, Taal> tals;
+    std::unordered_map<std::string, Tempo> tempos;
+    std::unordered_map<std::string, Instrument> instruments;
+
+    Taal currentTaal;
+    Tempo currentTempo;
+    Instrument currentInstrument;
+    RhythmicVariation variationType = NORMAL; // Default: Normal
 
 public:
-    TaalManager() {
-        // Adding Carnatic Tals
-        tals["Adhi Taal"] = Taal("Adhi Taal", 8, {"Dha", "Dhin", "Na", "Dhin", "Dha", "Tin", "Na", "Dhin"});
-        tals["Rupaka Taal"] = Taal("Rupaka Taal", 6, {"Dha", "Tin", "Na", "Dhin", "Na", "Dha"});
-        tals["Tisra Taal"] = Taal("Tisra Taal", 10, {"Dha", "Dhin", "Na", "Dhin", "Na", "Dha", "Tin", "Na", "Dhin", "Na"});
-        tals["Chapu Taal"] = Taal("Chapu Taal", 7, {"Dha", "Tin", "Na", "Dhin", "Na", "Tin", "Dha"});
-        tals["Khanda Taal"] = Taal("Khanda Taal", 5, {"Dha", "Dhin", "Na", "Tin", "Na"});
-        tals["Misra Taal"] = Taal("Misra Taal", 7, {"Dha", "Tin", "Na", "Dhin", "Na", "Tin", "Dha"});
-
-        // Adding Hindustani Tals
-        tals["Teentaal"] = Taal("Teentaal", 16, {"Dha", "Dhin", "Dhin", "Dha", "Dhin", "Na", "Dhin", "Dha", "Tin", "Na", "Dhin", "Dhin", "Dha", "Na", "Dhin", "Dha"});
-        tals["Ektaal"] = Taal("Ektaal", 12, {"Dha", "Dhin", "Na", "Dhin", "Na", "Dha", "Tin", "Na", "Dhin", "Na", "Dhin", "Dha"});
-        tals["Jhaptaal"] = Taal("Jhaptaal", 10, {"Dha", "Tin", "Na", "Dhin", "Dhin", "Na", "Dha", "Dhin", "Na", "Dha"});
-        tals["Ada Chautal"] = Taal("Ada Chautal", 14, {"Dha", "Dhin", "Na", "Dhin", "Na", "Dha", "Tin", "Na", "Dhin", "Dha", "Na", "Dhin", "Na", "Dha"});
-        tals["Dhamar"] = Taal("Dhamar", 14, {"Dha", "Dhin", "Na", "Dhin", "Na", "Dha", "Tin", "Na", "Dhin", "Dha", "Na", "Dhin", "Na", "Dha"});
-        tals["Keherwa"] = Taal("Keherwa", 8, {"Dha", "Dhin", "Dhin", "Dha", "Dha", "Dhin", "Dhin", "Dha"});
-        tals["Chautal"] = Taal("Chautal", 12, {"Dha", "Dhin", "Na", "Dhin", "Na", "Dha", "Tin", "Na", "Dhin", "Dha", "Na", "Dhin"});
-        tals["Mishra Chapu"] = Taal("Mishra Chapu", 7, {"Dha", "Dhin", "Na", "Dhin", "Na", "Dhin", "Na"});
-        tals["Tisra Taal"] = Taal("Tisra Taal", 10, {"Dha", "Dhin", "Dhin", "Dha", "Tin", "Na", "Dhin", "Dhin", "Dha", "Na"});
-        tals["Dadra"] = Taal("Dadra", 6, {"Dha", "Dhin", "Dhin", "Dha", "Dhin", "Dha"});
-
-        // Adding Odissi Tals
-        tals["Trisra Jati"] = Taal("Trisra Jati", 7, {"Dha", "Dhin", "Na", "Dhin", "Dha", "Tin", "Na"});
-        tals["Ektali"] = Taal("Ektali", 4, {"Dha", "Dhin", "Na", "Dhin"});
-        tals["Rupaka Taal"] = Taal("Rupaka Taal", 6, {"Dha", "Tin", "Na", "Dhin", "Na", "Dha"});
-        tals["Jhaptaal"] = Taal("Jhaptaal", 10, {"Dha", "Tin", "Na", "Dhin", "Dhin", "Na", "Dha", "Dhin", "Na", "Dha"});
-        tals["Choutala"] = Taal("Choutala", 12, {"Dha", "Dhin", "Na", "Dhin", "Na", "Dha", "Tin", "Na", "Dhin", "Dha", "Na", "Dhin"});
-        tals["Mishra Jhaptaal"] = Taal("Mishra Jhaptaal", 10, {"Dha", "Tin", "Na", "Dhin", "Na", "Dhin", "Na", "Dha", "Na", "Dha"});
-        tals["Bhairavi Taal"] = Taal("Bhairavi Taal", 16, {"Dha", "Dhin", "Na", "Dhin", "Na", "Dha", "Tin", "Na", "Dhin", "Dha", "Na", "Dhin", "Na", "Dha", "Dhin", "Dha"});
-        tals["Sooltaal"] = Taal("Sooltaal", 10, {"Dha", "Tin", "Na", "Dhin", "Na", "Dhin", "Na", "Dha", "Na", "Dha"});
-        tals["Dhruva Taal"] = Taal("Dhruva Taal", 12, {"Dha", "Dhin", "Na", "Dhin", "Na", "Dha", "Tin", "Na", "Dhin", "Dha", "Na", "Dhin"});
-
-        // Adding variations (Dogun, Teen Gun, Chauguni, etc.)
-        tals["Teentaal"].variations.push_back("Dogun");
-        tals["Teentaal"].variations.push_back("Chauguni");
-        tals["Teentaal"].variations.push_back("Teen Gun");
-        tals["Keherwa"].variations.push_back("Dogun");
-    }
-
     // Function to add a new Taal
     void addTaal(const Taal& newTaal) {
         if (tals.find(newTaal.name) != tals.end()) {
@@ -82,13 +61,71 @@ public:
         tals[newTaal.name] = newTaal;
     }
 
-    // Function to get a Taal by name
-    Taal getTaal(const std::string& name) const {
-        auto it = tals.find(name);
+    // Function to set the current Taal
+    void setCurrentTaal(const std::string& taalName) {
+        auto it = tals.find(taalName);
         if (it == tals.end()) {
             throw std::invalid_argument("Taal not found.");
         }
-        return it->second;
+        currentTaal = it->second;
+    }
+
+    // Function to set the current Tempo
+    void setCurrentTempo(const Tempo& tempo) {
+        currentTempo = tempo;
+    }
+
+    // Function to set the current Instrument
+    void setCurrentInstrument(const Instrument& instrument) {
+        currentInstrument = instrument;
+    }
+
+    // Apply Rhythmic Variation
+    void applyVariation(RhythmicVariation variation) {
+        variationType = variation;
+        std::string variationName;
+        switch (variation) {
+            case DUGUN: variationName = "Dugun"; break;
+            case TIGUN: variationName = "Tigun"; break;
+            case CHAUGUNI: variationName = "Chauguni"; break;
+            case NORMAL: variationName = "Normal"; break;
+        }
+        std::cout << "Applied Rhythmic Variation: " << variationName << "\n";
+    }
+
+    // Generate MIDI file for the selected Taal and Tempo
+    void generateMIDI(const std::string& filename) {
+        std::ofstream midiFile(filename);
+        if (midiFile.is_open()) {
+            // Write header for MIDI (basic, for example purposes)
+            midiFile << "MIDI File: Generated from Indian Classical Music System\n";
+            midiFile << "Taal: " << currentTaal.name << "\n";
+            midiFile << "Tempo: " << currentTempo.name << " (" << currentTempo.beatsPerMinute << " BPM)\n";
+            midiFile << "Instrument: " << currentInstrument.name << "\n";
+            midiFile << "Rhythmic Variation: " << (variationType == NORMAL ? "Normal" : 
+                    (variationType == DUGUN ? "Dugun" : 
+                    (variationType == TIGUN ? "Tigun" : "Chauguni"))) << "\n\n";
+            midiFile << "Pattern:\n";
+
+            // Generate the rhythmic pattern based on selected Taal
+            int ticksPerBeat = 480;
+            int duration = ticksPerBeat * (60 / currentTempo.beatsPerMinute);
+
+            for (const std::string& bol : currentTaal.bols) {
+                midiFile << bol << " (Duration: " << duration << " ticks)\n";
+                // Map bol to MIDI note, this is a simplified mapping
+                if (bol == "Dha") {
+                    midiFile << "Note: " << currentInstrument.pitch << "\n";
+                }
+                // Handle other bols as needed (Na, Dhin, etc.)
+            }
+
+            // Close the file
+            midiFile.close();
+            std::cout << "MIDI file generated: " << filename << "\n";
+        } else {
+            std::cout << "Failed to create MIDI file.\n";
+        }
     }
 
     // Function to list all Tals
@@ -100,16 +137,23 @@ public:
 };
 
 int main() {
+    // Sample setup
     TaalManager manager;
-    manager.listAllTals();
 
-    // Adding a new taal dynamically
-    Taal newTaal("New Taal", 8, {"Dha", "Tin", "Na", "Dhin", "Na", "Dha", "Tin", "Na"});
-    manager.addTaal(newTaal);
+    // Adding some tals
+    manager.addTaal(Taal("Teentaal", 16, {"Dha", "Dhin", "Dha", "Tin", "Na", "Dhin", "Na", "Dha", "Tin", "Na", "Dha", "Tin", "Na", "Dha", "Dhin", "Dha"}));
+    manager.addTaal(Taal("Jhaptaal", 10, {"Dha", "Tin", "Na", "Dhin", "Na", "Dha", "Tin", "Na", "Dhin", "Na"}));
+    
+    // Setting a Taal, Tempo, and Instrument
+    manager.setCurrentTaal("Teentaal");
+    manager.setCurrentTempo(Tempo("Fast", 120));
+    manager.setCurrentInstrument(Instrument("Tabla", 60));
 
-    // Listing all tals after adding the new one
-    std::cout << "\nAfter adding new taal:\n";
-    manager.listAllTals();
+    // Applying a rhythmic variation
+    manager.applyVariation(DUGUN);
+
+    // Generate the MIDI file
+    manager.generateMIDI("output.mid");
 
     return 0;
 }
