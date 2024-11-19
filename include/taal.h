@@ -3,35 +3,36 @@
 
 #include <string>
 #include <vector>
-#include <map>
-#include <optional>
+#include <unordered_map>
+#include <nlohmann/json.hpp>
 
 class Taal {
 public:
-    Taal(const std::string &name, const std::vector<std::string> &bols)
-        : name(name), bols(bols) {}
+    Taal(const std::string& name, int beats, const std::vector<std::string>& bols);
 
-    const std::string &getName() const { return name; }
-    const std::vector<std::string> &getBols() const { return bols; }
+    std::string getName() const;
+    int getBeats() const;
+    std::vector<std::string> getBols() const;
 
 private:
-    std::string name;                // Name of the Taal
-    std::vector<std::string> bols;  // Sequence of bols (beats) in the Taal
+    std::string name;
+    int beats;
+    std::vector<std::string> bols;
 };
 
 class TaalManager {
 public:
-    // Loads predefined Tals (like Teentaal, Jhaptaal)
-    void loadDefaultTals();
+    void addTaal(const std::string& name, const std::vector<std::string>& bols);
+    void removeTaal(const std::string& name);
+    Taal* getTaal(const std::string& name);
+    std::unordered_map<std::string, Taal> getAllTals() const;
 
-    // Add a custom Taal
-    void addTaal(const std::string &name, const std::vector<std::string> &bols);
-
-    // Get a Taal by name
-    std::optional<Taal> getTaal(const std::string &name) const;
+    // JSON file handling
+    void loadTalsFromJson(const std::string& filepath);
+    void saveTalsToJson(const std::string& filepath) const;
 
 private:
-    std::map<std::string, Taal> tals;  // Map of Taal name to Taal object
+    std::unordered_map<std::string, Taal> tals; // Store all Tals by name
 };
 
 #endif // TAAL_H
