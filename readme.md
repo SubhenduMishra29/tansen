@@ -58,16 +58,16 @@ RaagTaalProject/
    make
 4. Run the application:
     ```bash
-  
-   ./bin/Tansen
+    ./bin/Tansen
+    
 ## **Usage**
 ### **Commands**
-  Create a Taal Track
 
+Create a Taal Track
  ```bash
-
 Raag <raag_name> Taal <taal_name> Tempo <tempo_name>
-Example:
+
+### **Example:**
 
  ```bash
 Copy code
