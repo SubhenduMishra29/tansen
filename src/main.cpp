@@ -1,34 +1,41 @@
-#include "taal.h"
+#include "TaalManager.h"
+#include "MIDIHandler.h"
+#include "Tempo.h"
 #include <iostream>
+#include <stdexcept>
 
 int main() {
-    TaalManager manager;
+    TaalManager taalManager;
+    MIDIHandler midiHandler;
 
-    // Load Tals from JSON
     try {
-        manager.loadTalsFromJson("tals.json");
+        taalManager.loadTaals("data/taals.json");
     } catch (const std::exception& e) {
-        std::cerr << "Error loading Tals: " << e.what() << std::endl;
+        std::cerr << e.what() << std::endl;
+        return 1;
     }
 
-    // Add a new Taal
-    manager.addTaal("CustomTaal", {"Dha", "Dha", "Tin", "Na", "Dhin"});
+    std::cout << "Available Taals:" << std::endl;
+    taalManager.listAllTaals();
 
-    // Save updated Tals back to JSON
+    std::cout << "Enter your command (e.g., 'Raag Bhairavi Taal Keherwa Bilambit'): ";
+    std::string command;
+    std::getline(std::cin, command);
+
+    // Parse command (not shown for brevity) and generate MIDI
+    std::string raag = "Bhairavi";  // Extracted from command
+    std::string taalName = "Keherwa";  // Extracted from command
+    std::string tempoName = "Bilambit";  // Extracted from command
+
+    Tempo tempo(tempoName, (tempoName == "Bilambit" ? 60 : tempoName == "Madhya" ? 90 : 120));
     try {
-        manager.saveTalsToJson("tals.json");
+        Taal taal = taalManager.getTaal(taalName);
+        midiHandler.generateTaalMIDI(taal, tempo, raag);
     } catch (const std::exception& e) {
-        std::cerr << "Error saving Tals: " << e.what() << std::endl;
+        std::cerr << e.what() << std::endl;
+        return 1;
     }
 
-    // Print all Tals
-    for (const auto& [name, taal] : manager.getAllTals()) {
-        std::cout << "Taal: " << name << ", Beats: ";
-        for (const auto& bol : taal.getBols()) {
-            std::cout << bol << " ";
-        }
-        std::cout << std::endl;
-    }
-
+    std::cout << "MIDI file generated successfully!" << std::endl;
     return 0;
 }
