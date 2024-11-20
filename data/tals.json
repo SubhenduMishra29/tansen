@@ -1,16 +1,85 @@
 {
-  "Hindustani": {
-    "Keherwa": { "beats": 8, "bols": ["Dha", "Ge", "Na", "Ti", "Na", "Ka", "Dhin", "Na"] },
-    "Teentaal": { "beats": 16, "bols": ["Dha", "Dhin", "Dhin", "Dha", "Dha", "Dhin", "Dhin", "Dha"] },
-    "Dadra": { "beats": 6, "bols": ["Dha", "Dhin", "Na", "Ti", "Na", "Dhin"] }
+  "hindustani": {
+    "Teentaal": {
+      "beats": 16,
+      "bols": ["Dha", "Dhin", "Dhin", "Dha", "Dha", "Dhin", "Dhin", "Dha", "Dha", "Tin", "Tin", "Ta", "Ta", "Dhin", "Dhin", "Dha"]
+    },
+    "Jhaptaal": {
+      "beats": 10,
+      "bols": ["Dhi", "Na", "Dhi", "Dhi", "Na", "Ti", "Na", "Dhi", "Na", "Dhi"]
+    },
+    "Ektaal": {
+      "beats": 12,
+      "bols": ["Dhin", "Dhin", "Dha", "Ge", "Tin", "Na", "Dhin", "Dhin", "Dha", "Ge", "Tin", "Na"]
+    },
+    "Keherva": {
+      "beats": 8,
+      "bols": ["Dha", "Ge", "Na", "Ti", "Na", "Ka", "Dhin", "Na"]
+    },
+    "Dadra": {
+      "beats": 6,
+      "bols": ["Dha", "Dhin", "Na", "Dha", "Tin", "Na"]
+    },
+    "Roopak": {
+      "beats": 7,
+      "bols": ["Tin", "Tin", "Na", "Dhin", "Na", "Dhin", "Na"]
+    },
+    "Jhoola": {
+      "beats": 6,
+      "bols": ["Dha", "Dhin", "Na", "Ti", "Na", "Dhin"]
+    },
+    "Khemta": {
+      "beats": 6,
+      "bols": ["Dha", "Ge", "Na", "Ti", "Na", "Ka"]
+    },
+    "Deepchandi": {
+      "beats": 14,
+      "bols": ["Dha", "Dhin", "Dhin", "Dha", "Ge", "Tin", "Na", "Tin", "Na", "Dha", "Dhin", "Dhin", "Dha", "Ge"]
+    }
   },
-  "Carnatic": {
-    "Adi": { "beats": 8, "bols": ["Ta", "Dhi", "Tom", "Nam", "Ta", "Dhi", "Tom", "Nam"] },
-    "Rupaka": { "beats": 6, "bols": ["Ta", "Dhi", "Tom", "Ta", "Nam", "Dhi"] },
-    "Jhampa": { "beats": 10, "bols": ["Ta", "Ka", "Di", "Mi", "Ta", "Ka", "Jo", "Nu"] }
+  "carnatic": {
+    "Adi": {
+      "beats": 8,
+      "bols": ["Tha", "Dhi", "Tha", "Ka", "Dhi", "Tha", "Jo", "Nu"]
+    },
+    "Rupaka": {
+      "beats": 6,
+      "bols": ["Tha", "Dhi", "Tha", "Jo", "Nu", "Tha"]
+    },
+    "Triputa": {
+      "beats": 7,
+      "bols": ["Tha", "Dhi", "Tha", "Ka", "Tha", "Jo", "Nu"]
+    },
+    "Jhampa": {
+      "beats": 10,
+      "bols": ["Tha", "Ka", "Tha", "Jo", "Nu", "Ka", "Dhi", "Tha", "Jo", "Nu"]
+    },
+    "Dhruva": {
+      "beats": 14,
+      "bols": ["Tha", "Dhi", "Tha", "Ka", "Tha", "Jo", "Nu", "Tha", "Dhi", "Tha", "Jo", "Nu", "Tha", "Jo"]
+    },
+    "Ata": {
+      "beats": 14,
+      "bols": ["Tha", "Ka", "Dhi", "Tha", "Jo", "Nu", "Tha", "Ka", "Dhi", "Tha", "Jo", "Nu", "Tha", "Ka"]
+    }
   },
-  "Odiya": {
-    "Khemta": { "beats": 6, "bols": ["Dha", "Ti", "Na", "Ti", "Na", "Dhin"] },
-    "Triputa": { "beats": 7, "bols": ["Ta", "Ka", "Dhi", "Mi", "Na", "Ta", "Jo"] }
+  "odiya": {
+    "Jhampa": {
+      "beats": 8,
+      "bols": ["Dha", "Dhin", "Na", "Ti", "Na", "Dhin", "Dha", "Na"]
+    },
+    "Addha": {
+      "beats": 16,
+      "bols": ["Dha", "Dhin", "Dha", "Ge", "Na", "Ka", "Dhin", "Na", "Dha", "Dhin", "Dha", "Ge", "Na", "Ka", "Tin", "Na"]
+    },
+    "Khemta": {
+      "beats": 6,
+      "bols": ["Dha", "Ge", "Na", "Ti", "Na", "Ka"]
+    },
+    "Loka": {
+      "beats": 8,
+      "bols": ["Dha", "Na", "Ge", "Ti", "Na", "Ge", "Dha", "Na"]
+    }
   }
 }
+
