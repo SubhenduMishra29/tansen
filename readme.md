@@ -1,3 +1,20 @@
+# Tansen
+
+**Tansen** is a CLI-based tool for generating **MIDI tracks** based on Indian classical music principles. It supports a wide variety of **Hindustani**, **Carnatic**, and **Odiya Taal**, and allows users to dynamically generate rhythm tracks with customizable Raag, Taal, and Tempo for use in DAWs like Fruity Loops or Ableton Live.
+
+---
+
+## **Features**
+- Comprehensive library of Hindustani, Carnatic, and Odiya Taals.
+- Dynamic tempo control (Vilambit, Madhya, Drut).
+- Generate rhythmic MIDI tracks for use in professional DAWs.
+- Support for creating and modifying custom Taals.
+- Command-based user interaction.
+
+---
+
+## **Project Structure**
+
 RaagTaalProject/
 ├── include/
 │   ├── TaalManager.h        # Manages all Taal definitions and retrieval.
@@ -16,3 +33,116 @@ RaagTaalProject/
 │   └── taal_track.mid       # Generated MIDI file for DAWs.
 ├── CMakeLists.txt           # Build system configuration.
 └── README.md         
+
+---
+
+## **Installation**
+
+### **Dependencies**
+- A C++17 compiler (e.g., GCC or Clang)
+- CMake (version 3.10 or higher)
+- [nlohmann-json](https://github.com/nlohmann/json) library for JSON parsing
+- DAW software to use the generated MIDI files (e.g., Fruity Loops, Ableton Live)
+
+### **Build Instructions**
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/tansen.git
+   cd tansen
+Create a build directory and configure the project:
+
+bash
+Copy code
+mkdir build
+cd build
+cmake ..
+Build the executable:
+
+bash
+Copy code
+make
+Run the application:
+
+bash
+Copy code
+./bin/Tansen
+Usage
+Commands
+Create a Taal Track
+
+bash
+Copy code
+Raag <raag_name> Taal <taal_name> Tempo <tempo_name>
+Example:
+
+bash
+Copy code
+Raag Bhairavi Taal Keherva Tempo Vilambit
+Generates a MIDI track for Raag Bhairavi with Keherva Taal at Vilambit speed.
+
+List Available Taals
+
+bash
+Copy code
+list taals
+Add Custom Taal
+
+bash
+Copy code
+add taal <taal_name> <beats> <bol1> <bol2> ... <bolN>
+Example:
+
+bash
+Copy code
+add taal MyTaal 8 Dha Ge Na Ti Na Ke Tin Na
+Set Tempo
+
+bash
+Copy code
+set tempo <tempo_name>
+Output
+The generated MIDI file is stored in the output/ directory as taal_track.mid.
+Supported Taals
+Hindustani Taals
+Teentaal
+Jhaptaal
+Ektaal
+Keherva
+Dadra
+Roopak
+Jhoola
+Khemta
+Deepchandi
+Carnatic Taals
+Adi
+Rupaka
+Triputa
+Jhampa
+Dhruva
+Ata
+Odiya Taals
+Jhampa
+Addha
+Khemta
+Loka
+License
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+Contributing
+Fork the repository.
+Create a new branch (git checkout -b feature-name).
+Commit your changes (git commit -am 'Add some feature').
+Push to the branch (git push origin feature-name).
+Create a pull request.
+Contact
+For questions, suggestions, or contributions, please reach out to:
+
+Email: your-email@example.com
+GitHub: your-username
+Enjoy creating music with Tansen! 🎵
+
+
+
+
+
+
