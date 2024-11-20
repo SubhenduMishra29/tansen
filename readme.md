@@ -56,18 +56,18 @@ RaagTaalProject/
    cmake ..
 3. Build the executable:
     ```bash
-   Copy code
+  
    make
 4. Run the application:
     ```bash
-   Copy code
+  
    ./bin/Tansen
-Usage
-Commands
-Create a Taal Track
+##Usage
+###Commands
+  Create a Taal Track
 
  ```bash
-Copy code
+
 Raag <raag_name> Taal <taal_name> Tempo <tempo_name>
 Example:
 
@@ -76,7 +76,7 @@ Copy code
 Raag Bhairavi Taal Keherva Tempo Vilambit
 Generates a MIDI track for Raag Bhairavi with Keherva Taal at Vilambit speed.
 
-List Available Taals
+### List Available Taals
 
  ```bash
 Copy code
@@ -84,19 +84,19 @@ list taals
 Add Custom Taal
 
  ```bash
-Copy code
+
 add taal <taal_name> <beats> <bol1> <bol2> ... <bolN>
 Example:
 
  ```bash
-Copy code
+
 add taal MyTaal 8 Dha Ge Na Ti Na Ke Tin Na
 Set Tempo
 
  ```bash
-Copy code
+
 set tempo <tempo_name>
-Output
+###Output
 The generated MIDI file is stored in the output/ directory as taal_track.mid.
 Supported Taals
 Hindustani Taals
