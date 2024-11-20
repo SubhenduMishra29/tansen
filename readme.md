@@ -51,53 +51,53 @@ RaagTaalProject/
    cd tansen
 Create a build directory and configure the project:
 
-bash
+ ```bash
 Copy code
 mkdir build
 cd build
 cmake ..
 Build the executable:
 
-bash
+ ```bash
 Copy code
 make
 Run the application:
 
-bash
+ ```bash
 Copy code
 ./bin/Tansen
 Usage
 Commands
 Create a Taal Track
 
-bash
+ ```bash
 Copy code
 Raag <raag_name> Taal <taal_name> Tempo <tempo_name>
 Example:
 
-bash
+ ```bash
 Copy code
 Raag Bhairavi Taal Keherva Tempo Vilambit
 Generates a MIDI track for Raag Bhairavi with Keherva Taal at Vilambit speed.
 
 List Available Taals
 
-bash
+ ```bash
 Copy code
 list taals
 Add Custom Taal
 
-bash
+ ```bash
 Copy code
 add taal <taal_name> <beats> <bol1> <bol2> ... <bolN>
 Example:
 
-bash
+ ```bash
 Copy code
 add taal MyTaal 8 Dha Ge Na Ti Na Ke Tin Na
 Set Tempo
 
-bash
+ ```bash
 Copy code
 set tempo <tempo_name>
 Output
