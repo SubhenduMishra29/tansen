@@ -70,7 +70,6 @@ Raag <raag_name> Taal <taal_name> Tempo <tempo_name>
 ### **Example:**
 
  ```bash
-
 Raag Bhairavi Taal Keherva Tempo Vilambit
 Generates a MIDI track for Raag Bhairavi with Keherva Taal at Vilambit speed.
 
