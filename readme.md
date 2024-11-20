@@ -34,8 +34,6 @@ RaagTaalProject/
 ├── CMakeLists.txt           # Build system configuration.
 └── README.md         
 
----
-
 ## **Installation**
 
 ### **Dependencies**
@@ -62,8 +60,8 @@ RaagTaalProject/
     ```bash
   
    ./bin/Tansen
-##Usage
-###Commands
+## **Usage**
+### **Commands**
   Create a Taal Track
 
  ```bash
@@ -76,7 +74,7 @@ Copy code
 Raag Bhairavi Taal Keherva Tempo Vilambit
 Generates a MIDI track for Raag Bhairavi with Keherva Taal at Vilambit speed.
 
-### List Available Taals
+### **List Available Taals**
 
  ```bash
 Copy code
@@ -86,7 +84,7 @@ Add Custom Taal
  ```bash
 
 add taal <taal_name> <beats> <bol1> <bol2> ... <bolN>
-Example:
+### **Example:**
 
  ```bash
 
