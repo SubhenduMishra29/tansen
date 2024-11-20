@@ -49,23 +49,19 @@ RaagTaalProject/
    ```bash
    git clone https://github.com/your-username/tansen.git
    cd tansen
-Create a build directory and configure the project:
-
- ```bash
-Copy code
-mkdir build
-cd build
-cmake ..
-Build the executable:
-
- ```bash
-Copy code
-make
-Run the application:
-
- ```bash
-Copy code
-./bin/Tansen
+2. Create a build directory and configure the project:
+    ```bash
+   mkdir build
+   cd build
+   cmake ..
+3. Build the executable:
+    ```bash
+   Copy code
+   make
+4. Run the application:
+    ```bash
+   Copy code
+   ./bin/Tansen
 Usage
 Commands
 Create a Taal Track
