@@ -6,6 +6,7 @@
 #include <vector>
 #include <json/json.h>
 
+// Taal structure
 struct Taal {
     std::string name;
     int beats;
@@ -23,4 +24,4 @@ public:
     void listAllTaals() const;
 };
 
-#endif
+#endif // TAALMANAGER_H
